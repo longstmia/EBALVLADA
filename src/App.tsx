@@ -1,17 +1,18 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
-import HomePage from './pages/HomePage';
-import ShopsPage from './pages/ShopsPage';
+import { FontStyles } from './styles/FontStyles';
+import GlobalStyles from './GlobalStyles';
+import ShopListPage from './pages/ShopsListPage';
 
 export default function App() {
   return (
-    <Router>
-      <Routes>
-        {/* Роут для главной страницы */}
-        <Route path="/" element={<HomePage />} />
-        {/* Другие роуты */}
-        <Route path="/shops" element={<ShopsPage />} />
-      </Routes>
-    </Router>
+    <>
+      <GlobalStyles />
+      <FontStyles />
+      <Router>
+        <Routes>
+          <Route path="/" element={<ShopListPage />} />
+        </Routes>
+      </Router>
+    </>
   );
 }

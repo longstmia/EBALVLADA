@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import api from '../shared/api/api';
+import ShopCard from './shopcard/ShopCard';
 
-const ShopsPage: React.FC = () => {
+export const ShopList: React.FC = () => {
   const [shops, setShops] = useState<
     { id: number; name: string; address: string; pattern: string }[]
   >([]);
@@ -19,16 +20,20 @@ const ShopsPage: React.FC = () => {
 
   return (
     <div>
-      <div>
-        {shops.map((shop) => (
-          <div key={shop.id}>
-            <h2>{shop.name}</h2>
-            <p>{shop.address}</p>
-          </div>
-        ))}
-      </div>
+      {shops.length === 0 ? (
+        <p>Магазины не найдены.</p>
+      ) : (
+        <div>
+          {shops.map((shop) => (
+            <ShopCard
+              key={shop.id}
+              name={shop.name}
+              address={shop.address}
+              pattern={shop.pattern}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
-
-export default ShopsPage;
